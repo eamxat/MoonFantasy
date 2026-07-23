@@ -266,7 +266,7 @@
 
 <button class="theme-btn" id="themeBtn" aria-label="Cambiar paleta de colores">
   <svg viewBox="0 0 24 24">
-    <path d="M12,22C6.49,22 2,17.51 2,12C2,6.49 6.49,2 12,2C17.51,2 22,6.49 22,12C22,13.38 20.88,14.5 19.5,14.5C18.9,14.5 18.34,14.28 17.91,13.9C17.56,13.59 17.14,13.43 16.65,13.43C15.65,13.43 14.83,14.24 14.83,15.25C14.83,15.66 14.97,16.03 15.2,16.34C15.54,16.79 15.75,17.36 15.75,18C15.75,19.1 14.85,20 13.75,20C13.2,20 12.62,21.8 12,22M6.5,10C7.33,10 8,9.33 8,8.5C8,7.67 7.33,7 6.5,7C5.67,7 5,7.67 5,8.5C5,9.33 5.67,10 6.5,10M9.5,6C10.33,6 11,5.33 11,4.5C11,3.67 10.33,3 9.5,3C8.67,3 8,3.67 8,4.5C8,5.33 8.67,6 9.5,6M14.5,6C15.33,6 16,5.33 16,4.5C16,3.67 15.33,3 14.5,3C13.67,3 13,3.67 13,4.5C13,5.33 13.67,6 14.5,6M17.5,10C18.33,10 19,9.33 19,8.5C19,7.67 18.33,7 17.5,7C16.67,7 16,7.67 16,8.5C16,9.33 16.67,10 17.5,10Z" />
+    <circle id="themeBtnCircle" cx="12" cy="12" r="9" />
   </svg>
 </button>
 
@@ -305,10 +305,17 @@
 
   // Botón mágico de temas
   const btn = document.getElementById("themeBtn");
+  const btnCircle = document.getElementById("themeBtnCircle");
+  const themeColors = ["#5D327C", "#D499B9", "#DF8076", "#A22C74"];
   let currentTheme = 0;
+  function updateThemeBtnColor(){
+    btnCircle.setAttribute("fill", themeColors[currentTheme]);
+  }
+  updateThemeBtnColor();
   btn.addEventListener("click", () => {
     currentTheme = (currentTheme + 1) % 4;
     document.documentElement.setAttribute("data-theme", currentTheme);
+    updateThemeBtnColor();
   });
 
   function rand(min, max){ return Math.random() * (max - min) + min; }
