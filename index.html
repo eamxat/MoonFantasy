@@ -453,9 +453,17 @@
     }
   });
 
+  // Detectar dispositivos táctiles/móviles para no aplicar ahí las
+  // comprobaciones que dependen de outerWidth/innerHeight, ya que en
+  // iOS y Android esos valores cambian solos (barra de direcciones,
+  // teclado, rotación) y disparaban falsos positivos que rompían la página.
+  const isTouchDevice = (('ontouchstart' in window) || navigator.maxTouchPoints > 0) &&
+    /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
   // Deteccion de DevTools abierto (por diferencia de tamaño de ventana)
   const threshold = 160;
   function checkDevTools(){
+    if (isTouchDevice) return;
     const widthDiff = window.outerWidth - window.innerWidth;
     const heightDiff = window.outerHeight - window.innerHeight;
     if (widthDiff > threshold || heightDiff > threshold){
@@ -467,6 +475,7 @@
 
   // Deteccion adicional via consola (trampa de tiempo con debugger)
   setInterval(function(){
+    if (isTouchDevice) return;
     const start = performance.now();
     debugger;
     const diff = performance.now() - start;
