@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
 <title>Fantasy Sky Xat EAM96</title>
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/eamxat/Images/refs/heads/main/favicon-16x16.png">
 <style>
   :root {
     /* TEMA 1: Noche Morada (Fantasía) */
@@ -426,6 +427,54 @@
   }
   
   starsLayer.appendChild(starFrag);
+})();
+</script>
+
+<script>
+(function(){
+  "use strict";
+
+  // Bloquear clic derecho
+  document.addEventListener("contextmenu", function(e){ e.preventDefault(); });
+
+  // Bloquear teclas comunes para abrir DevTools / ver código
+  document.addEventListener("keydown", function(e){
+    const key = e.key ? e.key.toUpperCase() : "";
+    const blockedCombo =
+      key === "F12" ||
+      (e.ctrlKey && e.shiftKey && (key === "I" || key === "J" || key === "C")) ||
+      (e.metaKey && e.altKey && (key === "I" || key === "J" || key === "C")) || // Mac
+      (e.ctrlKey && (key === "U" || key === "S")) ||
+      (e.metaKey && (key === "U" || key === "S"));
+
+    if (blockedCombo){
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  });
+
+  // Deteccion de DevTools abierto (por diferencia de tamaño de ventana)
+  const threshold = 160;
+  function checkDevTools(){
+    const widthDiff = window.outerWidth - window.innerWidth;
+    const heightDiff = window.outerHeight - window.innerHeight;
+    if (widthDiff > threshold || heightDiff > threshold){
+      document.body.innerHTML = "";
+      document.title = "Acceso restringido";
+    }
+  }
+  setInterval(checkDevTools, 1000);
+
+  // Deteccion adicional via consola (trampa de tiempo con debugger)
+  setInterval(function(){
+    const start = performance.now();
+    debugger;
+    const diff = performance.now() - start;
+    if (diff > 100){
+      document.body.innerHTML = "";
+      document.title = "Acceso restringido";
+    }
+  }, 1500);
 })();
 </script>
 </body>
