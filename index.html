@@ -197,10 +197,11 @@
   .shape-3::after { width: 90px; height: 90px; top: -35px; right: 25px; }
   .shape-3 .cloud-shadow { width: 210px; }
 
-  /* Restaurada tu luna original intacta */
+  /* Restaurada tu luna original intacta con la nueva traslación solicitada (170px der, 15px abajo) */
   .moon-wrap {
     position: absolute; right: 13%; top: 9%; width: 12.5%;
     aspect-ratio: 42.507/52.566; z-index: 8; pointer-events: none;
+    transform: translate(170px, 15px);
   }
   .moon-float {
     position: absolute; inset: 0; animation: moonFloat 6s ease-in-out infinite; will-change: transform;
@@ -233,9 +234,10 @@
   .theme-btn:hover { background: rgba(255, 255, 255, 0.25); transform: scale(1.05); }
   .theme-btn svg { width: 22px; height: 22px; fill: #FFF; }
 
+  /* Logotipo de xat reducido ligeramente en tamaño (de 80px a 70px) */
   .xat-logo {
     position: absolute; bottom: 20px; right: 20px; z-index: 10;
-    width: 80px; display: block; cursor: pointer; transition: all 0.3s ease;
+    width: 70px; display: block; cursor: pointer; transition: all 0.3s ease;
     touch-action: manipulation;
   }
   .xat-logo img { width: 100%; height: auto; display: block; transition: all 0.3s ease; }
@@ -251,7 +253,8 @@
     .moon-wrap { width: 22%; top: 7%; right: 8%; }
     .theme-btn { left: 15px; width: 40px; height: 40px; }
     .theme-btn svg { width: 18px; height: 18px; }
-    .xat-logo { bottom: 15px; right: 15px; width: 65px; }
+    /* Logotipo ligeramente más pequeño también en móviles (de 65px a 55px) */
+    .xat-logo { bottom: 15px; right: 15px; width: 55px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .parallax-layer, .layer-group, .cloud-wrapper, .moon-float, .moon-halo, .ambient-glow, .star { animation: none !important; }
